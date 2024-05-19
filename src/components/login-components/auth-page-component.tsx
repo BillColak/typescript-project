@@ -4,12 +4,12 @@ import Image from 'next/image';
 import {MountainIcon} from "lucide-react";
 import {SignUpAuthForm} from "@/components/login-components/sign-up-auth-form";
 
-
-// this might cause and error, I'm not sure.
-export interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface UserAuthFormProps {
+  className?: string
   status?: "login" | "signup"
-  setauthstatus?: (status: "login" | "signup") => void
+  setAuthStatus: (status: "login" | "signup") => void
 }
+
 
 
 function AuthPageComponent() {
@@ -38,8 +38,8 @@ function AuthPageComponent() {
         <div className="p-8">
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             {status === "login" ?
-              <LoginAuthForm status={status} setauthstatus={setStatus}/> :
-              <SignUpAuthForm status={status} setauthstatus={setStatus}/>}
+              <LoginAuthForm status={status} setAuthStatus={setStatus}/> :
+              <SignUpAuthForm status={status} setAuthStatus={setStatus}/>}
           </div>
         </div>
       </div>

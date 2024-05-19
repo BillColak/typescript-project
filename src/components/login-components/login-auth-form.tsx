@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -21,7 +19,7 @@ export const Google = (props: LucideProps) => (
 )
 
 
-export function LoginAuthForm({ className, ...props }: UserAuthFormProps) {
+export function LoginAuthForm({className, setAuthStatus}: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -32,7 +30,7 @@ export function LoginAuthForm({ className, ...props }: UserAuthFormProps) {
   }
 
   return (
-    <div className={cn("grid gap-6", className)} {...props}>
+    <div className={cn("grid gap-6", className)}>
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           Login to your account
@@ -116,7 +114,7 @@ export function LoginAuthForm({ className, ...props }: UserAuthFormProps) {
         </Button>
         <div className="mt-4 text-center text-sm flex gap-2 justify-center cursor-pointer text-muted-foreground">
           Don&apos;t have an account?{" "}
-          <p onClick={() => props.setAuthStatus && props.setAuthStatus("signup")}
+          <p onClick={() => setAuthStatus("signup")}
              className="underline hover:text-primary">
             Sign up
           </p>

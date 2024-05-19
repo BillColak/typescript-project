@@ -5,7 +5,7 @@ import * as React from "react";
 import {UserAuthFormProps} from "@/components/login-components/auth-page-component";
 import {cn} from "@/lib/utils";
 
-export function SignUpAuthForm({className, ...props}: UserAuthFormProps) {
+export function SignUpAuthForm({className, setAuthStatus}: UserAuthFormProps) {
   const [email, setEmail] = React.useState("")
   const [password, setPassword] = React.useState("")
   const [isLoading, setIsLoading] = React.useState(false)
@@ -16,7 +16,7 @@ export function SignUpAuthForm({className, ...props}: UserAuthFormProps) {
     setIsLoading(true)
   }
   return (
-    <div className={cn("grid gap-6", className)} {...props}>
+    <div className={cn("grid gap-6", className)}>
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">
           Create an account
@@ -98,7 +98,7 @@ export function SignUpAuthForm({className, ...props}: UserAuthFormProps) {
         </Button>
         <div className="mt-4 text-center text-sm flex gap-2 justify-center cursor-pointer text-muted-foreground">
           Already have an account?{" "}
-          <p onClick={() => props.setAuthStatus && props.setAuthStatus("login")}
+          <p onClick={() => setAuthStatus("login")}
             className="underline hover:text-primary ">
             Sign in
           </p>
