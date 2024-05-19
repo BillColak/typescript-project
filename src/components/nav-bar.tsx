@@ -34,6 +34,7 @@ export default function NavBar() {
             <Button
               variant="ghost"
               className="w-fit"
+              onClick={() => window.location.href = '/auth'}
             >
               Sign Out
             </Button>

@@ -9,8 +9,9 @@ import { Label } from "@/components/ui/label"
 import {FormEvent, useState} from "react";
 import {Loader2, LucideProps} from "lucide-react";
 import Link from "next/link";
+import {UserAuthFormProps} from "@/components/login-components/auth-page-component";
 
-const Google = (props: LucideProps) => (
+export const Google = (props: LucideProps) => (
   <svg role="img" viewBox="0 0 24 24" {...props}>
     <path
       fill="currentColor"
@@ -19,9 +20,8 @@ const Google = (props: LucideProps) => (
   </svg>
 )
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function LoginAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -29,24 +29,18 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const handleSignIn = async (e: FormEvent) => {
     e.preventDefault()
     setIsLoading(true);
-    // try {
-    //   await signIn(
-    //       {
-    //         email,
-    //         password
-    //       })
-    //   } catch (e) {
-    //     console.error(e)
-    //     setSignedIn(false)
-    //   } finally {
-    //     setSignedIn(true)
-    //     setIsLoading(false)
-    //     router.refresh()
-    //   }
   }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
+      <div className="flex flex-col space-y-2 text-center">
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Login to your account
+        </h1>
+        <p className="text-sm text-muted-foreground">
+          Enter your email below to login
+        </p>
+      </div>
       <form onSubmit={handleSignIn}>
         <div className="grid gap-2">
           <div className="flex flex-col gap-4">
@@ -110,14 +104,24 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button variant="outline" disabled={isLoading} className={"bg-background text-foreground hover:bg-accent"}>
-        {isLoading ? (
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Google className="mr-2 h-4 w-4" />
-        )}{" "}
-        Google
-      </Button>
+      <div>
+        <Button variant="outline" disabled={isLoading}
+                className={"bg-background text-foreground hover:bg-accent w-full"}>
+          {isLoading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
+          ) : (
+            <Google className="mr-2 h-4 w-4"/>
+          )}{" "}
+          Google
+        </Button>
+        <div className="mt-4 text-center text-sm flex gap-2 justify-center cursor-pointer text-muted-foreground">
+          Don&apos;t have an account?{" "}
+          <p onClick={() => props.setAuthStatus && props.setAuthStatus("signup")}
+             className="underline hover:text-primary">
+            Sign up
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

@@ -14,20 +14,27 @@ import React, {
 interface DataContextProps {
   userId: string;
   setUserId: Dispatch<SetStateAction<string>>;
+  // add your context properties here because TypeScript...
+
 }
 
 
 const DataContext = createContext<DataContextProps>({
   userId: '',
   setUserId: (): string => '',
+  // add your default value here
+
 })
 
 export const DataProvider: React.FC<PropsWithChildren> = ({children}) => {
   const [userId, setUserId] = useState<string>('');
 
   useEffect(() => {
+    // add your logic to update states here
+  }, [
+    // add your dependencies to re-run the effect here
 
-  }, []);
+  ]);
 
 
   return (
