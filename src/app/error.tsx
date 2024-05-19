@@ -23,6 +23,9 @@ function Error({error, reset}: { error: Error, reset: () => void }) {
             height={500}
           />
         </div>
+        <div className="text-xs text-muted-foreground bg-destructive">
+          {error.message}
+        </div>
       </div>
     </div>
   );

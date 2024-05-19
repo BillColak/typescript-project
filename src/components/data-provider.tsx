@@ -2,12 +2,12 @@
 
 import React, {
   createContext,
-  useContext,
-  useState,
   Dispatch,
+  PropsWithChildren,
   SetStateAction,
+  useContext,
   useEffect,
-  PropsWithChildren
+  useState
 } from 'react';
 
 
@@ -22,16 +22,16 @@ const DataContext = createContext<DataContextProps>({
   setUserId: (): string => '',
 })
 
-const DataProvider: React.FC<PropsWithChildren> = ({children}) => {
+export const DataProvider: React.FC<PropsWithChildren> = ({children}) => {
   const [userId, setUserId] = useState<string>('');
 
   useEffect(() => {
 
-  },[]);
+  }, []);
 
 
   return (
-    <DataContext.Provider value={{ userId, setUserId }}>
+    <DataContext.Provider value={{userId, setUserId}}>
       {children}
     </DataContext.Provider>
   )
@@ -39,6 +39,6 @@ const DataProvider: React.FC<PropsWithChildren> = ({children}) => {
 
 function useDataProvider(): DataContextProps {
   const context = useContext(DataContext);
-  if (!context) throw new Error('useDataProvider must be used within a DataProvider'+ window.location.pathname.toString());
+  if (!context) throw new Error('useDataProvider must be used within a DataProvider' + window.location.pathname.toString());
   return context;
 }

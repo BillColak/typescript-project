@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {FormEvent, useState} from "react";
 import {Loader2, LucideProps} from "lucide-react";
+import Link from "next/link";
 
 const Google = (props: LucideProps) => (
   <svg role="img" viewBox="0 0 24 24" {...props}>
@@ -48,47 +49,60 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     <div className={cn("grid gap-6", className)} {...props}>
       <form onSubmit={handleSignIn}>
         <div className="grid gap-2">
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              className="border"
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading}
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-            <Input
-              className="border"
-              id="password"
-              placeholder="password"
-              type="password"
-              autoCapitalize="none"
-              autoComplete="password"
-              autoCorrect="off"
-              disabled={isLoading}
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-
+          <div className="flex flex-col gap-4">
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input
+                required
+                className="border border-muted"
+                id="email"
+                placeholder="name@example.com"
+                type="email"
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect="off"
+                disabled={isLoading}
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </div>
+            <div>
+              <div className="flex items-center">
+                <Label htmlFor="password">Password</Label>
+                <Link
+                  href="/forgot-password"
+                  className="ml-auto inline-block text-sm underline"
+                >
+                  Forgot your password?
+                </Link>
+              </div>
+              <Input
+                required
+                className="border border-muted"
+                id="password"
+                placeholder="password"
+                type="password"
+                autoCapitalize="none"
+                autoComplete="password"
+                autoCorrect="off"
+                disabled={isLoading}
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </div>
+            <Button disabled={isLoading}>
+              {isLoading && (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
+              )}
+              Sign In
+            </Button>
           </div>
-          <Button disabled={isLoading}>
-            {isLoading && (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            )}
-            Sign In
-          </Button>
+
         </div>
       </form>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
+          <span className="w-full border-t"/>
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
