@@ -11,9 +11,12 @@ export function SignUpAuthForm({className, setAuthStatus}: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState(false)
   const [lastName, setLastName] = React.useState("")
   const [firstName, setFirstName] = React.useState("")
+
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+
+
   }
   return (
     <div className={cn("grid gap-6", className)}>

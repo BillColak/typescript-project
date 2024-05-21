@@ -26,7 +26,7 @@ export function LoginAuthForm({className, setAuthStatus}: UserAuthFormProps) {
 
   const handleSignIn = async (e: FormEvent) => {
     e.preventDefault()
-    setIsLoading(true);
+    // setIsLoading(true);
   }
 
   return (
